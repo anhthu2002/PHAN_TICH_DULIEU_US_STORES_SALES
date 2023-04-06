@@ -1,0 +1,35 @@
+//1. Total Profit  by Product 
+select [Measures].[Profit] on columns,
+    NONEMPTY ([Dim Product].[Product Type].[Product Type])on rows
+from [Midterm_OLAP_View];
+
+//2. Total Sales by years 
+select  [Measures].[Sales] on columns,
+    NONEMPTY ([Dim Date].[Year].[Year]) on rows
+from [Midterm_OLAP_View];
+
+//3. Total COGS by Product and Month 
+select NONEMPTY ([Dim Date].[Month].[Month]) ON COLUMNS,
+      NONEMPTY ([Dim Product].[Product].[Product]) ON ROWS
+from [Midterm_OLAP_View]
+where [Measures].[COGS];
+
+//4. Total Sales by Sate and Quarter
+select  NONEMPTY ([Dim Date].[Quarter].[Quarter]) on columns,
+		NONEMPTY ([Dim Product].[Product].[Product])  on rows
+from [Midterm_OLAP_View]
+where [Measures].[Sales];
+ 
+ //5. Total Inventory and Margin by Product 
+ select {[Measures].[Inventory],[Margin]} on columns,
+		NONEMPTY ([Dim Product].[Product].[Product]) on rows
+from [Midterm_OLAP_View];
+
+//6. Total Sales by years of New York
+select {[Measures].[Sales],[Marketing]} on columns,
+	NONEMPTY ([Dim Date].[Year].[Year]) on rows
+from [Midterm_OLAP_View]
+where [Dim Market].[State].[New York];
+
+
+
